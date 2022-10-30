@@ -28,6 +28,18 @@
 #endregion
 
 #region AbstractFactory
-DatabaseOperation databaseOperation = new DatabaseOperation(new OracleDatabaseFactory());
-databaseOperation.RemoveById(1);
+//DatabaseOperation databaseOperation = new DatabaseOperation(new OracleDatabaseFactory());
+//databaseOperation.RemoveById(1);
+#endregion
+
+#region Builder
+HouseBuilder houseBuilder = new BasicHouseBuilder();
+HouseDirector houseDirector = new HouseDirector(houseBuilder);
+houseDirector.Build();
+
+House house = houseBuilder.GetResult();
+
+Console.WriteLine($"Your house name is {house.Name} and \n window count : {house.WindowCount}");
+Console.Read();
+
 #endregion
