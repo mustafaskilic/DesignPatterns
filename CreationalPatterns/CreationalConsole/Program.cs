@@ -33,13 +33,29 @@
 #endregion
 
 #region Builder
-HouseBuilder houseBuilder = new BasicHouseBuilder();
-HouseDirector houseDirector = new HouseDirector(houseBuilder);
-houseDirector.Build();
+//HouseBuilder houseBuilder = new BasicHouseBuilder();
+//HouseDirector houseDirector = new HouseDirector(houseBuilder);
+//houseDirector.Build();
 
-House house = houseBuilder.GetResult();
+//House house = houseBuilder.GetResult();
 
-Console.WriteLine($"Your house name is {house.Name} and \n window count : {house.WindowCount}");
-Console.Read();
+//Console.WriteLine($"Your house name is {house.Name} and \n window count : {house.WindowCount}");
+//Console.Read();
 
+#endregion
+
+#region Prototype
+Account accountFirst = new Account();
+accountFirst.Name = "Mustafa Kılıç";
+accountFirst.Age = DateTime.Now.Year - 1997;
+accountFirst.Address = new Address { Country = "Türkiye", City = "İstanbul" };
+
+Account? accountSecond = accountFirst.Clone();
+accountSecond.Name = "Elif Kılıç";
+accountSecond.Age = 23;
+accountSecond.Address.Country = "Amerika";
+Console.WriteLine(accountFirst.Equals(accountSecond));
+Console.WriteLine(accountFirst.Address.Equals(accountSecond.Address));
+Console
+    .ReadLine();
 #endregion
