@@ -1,0 +1,4 @@
+﻿
+#region Adapter
+
+#endregion
