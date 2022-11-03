@@ -9,11 +9,12 @@ namespace StructuralLibrary
 
     public interface IJson
     {
-        string Serialize();
+        string Serialize(object obj);
     }
+
     public class NewtonSoftJson : IJson
     {
-        public string Serialize()
+        public string Serialize(object obj)
         {
             return "Serialized";
         }
@@ -21,7 +22,7 @@ namespace StructuralLibrary
 
     public class CustomJson {
 
-        public int Serializer()
+        public int Serializer(object obj)
         {
             return (int)CustomJsonSerializeStatus.Serialized;
         }
@@ -35,11 +36,12 @@ namespace StructuralLibrary
         {
             _customJson = new CustomJson();
         }
-        public string Serialize()
+
+        public string Serialize(object obj)
         {
-            if (_customJson.Serializer() == (int)CustomJsonSerializeStatus.Serialized)
+            if (_customJson.Serializer(obj) == (int)CustomJsonSerializeStatus.Serialized)
             {
-                return "Serialized";
+                return obj.ToString() + " Serialized";
             }
             else return "Unserialized";
         }
@@ -48,6 +50,7 @@ namespace StructuralLibrary
     public class JSonOperation
     {
         private IJson _json;
+
         public JSonOperation(IJson json)
         {
             _json = json;
@@ -55,7 +58,7 @@ namespace StructuralLibrary
 
         public string Serialize(object obj)
         {
-            return "Serialized";
+            return _json.Serialize(obj);
         }
 
     }
